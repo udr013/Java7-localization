@@ -18,7 +18,7 @@ public class ResourceBundles{
 		ResourceBundle bundle2 = PropertyResourceBundle.getBundle("some", new Locale("nl", "NL"));
 		System.out.println(bundle2.getString("How_are_you?"));
 
-		ResourceBundle bundle4 = ResourceBundle.getBundle("Somemore", new Locale("fo", "BA"));
+		ResourceBundle bundle4 = ListResourceBundle.getBundle("Somemore", new Locale("fo", "BA"));
 		System.out.println(bundle4.getString("How_are_you?"));
 
 
