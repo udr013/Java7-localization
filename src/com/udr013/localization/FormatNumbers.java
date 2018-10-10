@@ -10,16 +10,21 @@ public class FormatNumbers{
 		double num = 1234.1111;
 
 		defaultLocale(num);
+		specificLocale(Locale.UK, num);
 		specificLocale(Locale.GERMANY, num);
+		specificLocale(Locale.JAPAN, num);
 		specificLocale(Locale.FRANCE, num);
-		specificLocale(Locale.US, num);
+//		specificLocale(Locale.US, num);
 	}
 
 	private static void defaultLocale(double num){
 
+//		DecimalFormat nfDefault = NumberFormat.getInstance(); //not allowed
+//		NumberFormat nfDefault = DecimalFormat.getInstance();
 		NumberFormat nfDefault = NumberFormat.getInstance();
+		NumberFormat curDefault = NumberFormat.getCurrencyInstance();
 		p("\nDefault Locale");
-		p("formatting: " + nfDefault.format(num));
+		p("formatting as number: " + nfDefault.format(num));
 
 		try{
 			p("parsing : " + nfDefault.parse("1234.1111"));
@@ -27,11 +32,14 @@ public class FormatNumbers{
 			p(e.toString());
 		}
 
+		p("formatting as currency: " + nfDefault.getCurrency());
+		p(curDefault.format(num) + "\n");
 	}
 
 	private static void specificLocale(Locale locale, double num){
-
-		NumberFormat nfSpecific = NumberFormat.getInstance();
+		//parsing the locale to the overloaded get methods
+		NumberFormat nfSpecific = NumberFormat.getInstance(locale);
+		NumberFormat curSpecific = NumberFormat.getCurrencyInstance(locale);
 		p("\nLocale: " + locale.getDisplayCountry());
 		p("formatting: " + nfSpecific.format(num));
 
@@ -40,6 +48,8 @@ public class FormatNumbers{
 		} catch(ParseException e){
 			p(e.toString());
 		}
+		p("formatting as currency: " + curSpecific.getCurrency());
+		p(curSpecific.format(num) + "\n");
 	}
 
 	static void p(String s){
