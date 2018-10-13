@@ -16,12 +16,15 @@ public class FormatDates {
 		Date date = new Date();
 
 		for (Locale locale : locales) {
-			specificLocale(locale, date);
+			specificLocaleDate(locale, date);
+			specificLocaleTime(locale, date);
+			specificLocaleDateTime(locale, date);
 		}
+
 	}
 
-	private static void specificLocale(Locale locale, Date date) {
-		p("\nSpecific Locale :" + locale.getDisplayCountry());
+	private static void specificLocaleDate(Locale locale, Date date) {
+		p("\nSpecific Locale Date :" + locale.getDisplayCountry());
 		for (int style : styles) {
 			DateFormat specificDate = DateFormat.getDateInstance(style, locale);
 			p(styleName[style] + ": " + specificDate.format(date));
@@ -29,6 +32,23 @@ public class FormatDates {
 		}
 	}
 
+	private static void specificLocaleTime(Locale locale, Date date) {
+		p("\nSpecific Locale Time :" + locale.getDisplayCountry());
+		for (int style : styles) {
+			DateFormat specificDate = DateFormat.getTimeInstance(style, locale);
+			p(styleName[style] + ": " + specificDate.format(date));
+
+		}
+	}
+
+	private static void specificLocaleDateTime(Locale locale, Date date) {
+		p("\nSpecific Locale DateTime :" + locale.getDisplayCountry());
+		for (int style : styles) {
+			DateFormat specificDate = DateFormat.getDateTimeInstance(style, style, locale);
+			p(styleName[style] + ": " + specificDate.format(date));
+
+		}
+	}
 	static void p(String s) {
 		System.out.println(s);
 	}
