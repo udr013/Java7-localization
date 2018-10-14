@@ -11,6 +11,7 @@ public class CalendarDates {
 
 		Calendar calendar = Calendar.getInstance(Locale.FRANCE);
 		System.out.println(calendar.getTime());
+
 		calendar.set(Calendar.ERA, 0); // ERA
 		calendar.set(Calendar.YEAR, 2018); // year
 		calendar.set(Calendar.MONTH, Calendar.JULY); // month 0 based , use the constants
